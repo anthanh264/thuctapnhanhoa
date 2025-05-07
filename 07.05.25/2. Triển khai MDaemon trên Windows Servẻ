@@ -1,0 +1,44 @@
+## MDaemon trên Windows Server
+
+### 1. Tổng quan 
+
+### 2. Cài đặt và sử dụng 
+
+#### 2.1 Cài đặt 
+
+#### 2.2 Sử dụng 
++ Truy cập admin và enduser
+
++ Các port cần thiết được sử dụng trên email server Mdaemon
+SMTP inbound / outbound port - 25
+MSA inbound port - 587
+ODMR inbound port - 366
+SMTP SSL port - 465
+ActiveSync port - 80
+ActiveSync SSL port - 443
+POP3 inbound / outbound port - 110
+IMAP inbound port - 143
+POP3 SSL port - 995
+IMAP SSL port - 993
+DNS outbound port - 53
+Remote Administration port - 1000
+Remote Administration SSL port - 444
+WorldClient port - 3000
+WorldClient SSL port - 443
+Minger port - 4069
+XMPP port - 5222
+XMPP SSL port - 5223
+BOSH port (Webmail IM) - 7070
+BOSH SSL port (for Webmail IM) - 7443
++ Khởi tạo domain, user, group, Alias, Mailing lists email 
+
++ Thiết lập chính sách về mật khẩu account email
+
++ Thiết lập chữ ký email
++ Thiêt lập forward email
++ Tìm hiểu về Content Filter: Spam, Antivirus, Attach Fillters, Message Filters
++ Đổi mật khẩu account admin global, admin domain
++ Phân quyền cho tài khoản thành admin của domain
++ Kiểm tra log gửi/nhận email (đặc biệt chú ý)
++ Tìm hiểu thêm về Dynamic screening trong Security của Mdaemon
++ Tìm hiểu Backup/restore email (nếu được)
