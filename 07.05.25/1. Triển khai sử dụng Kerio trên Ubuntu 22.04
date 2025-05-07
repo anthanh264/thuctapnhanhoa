@@ -1,0 +1,18 @@
+## Triển khai sử dụng Kerio Mail trên Ubuntu 22.04
+
+## 1. Tổng quan về Kerio 
+- GFI KerioConnect là máy chủ thư và công cụ cộng tác tất cả trong một được triển khai bởi hơn 30 nghìn công ty trên toàn thế giới. Nó có thể được cài đặt trên nhiều hệ điều hành, bao gồm Windows, Mac OS và Linux.
+- GFI KerioConnect có quy mô vừa phải cho các doanh nghiệp có ngân sách nhỏ hơn và đội ngũ nhân viên CNTT hạn chế. Nó dễ quản lý, dễ triển khai và thường có chi phí thấp hơn các giải pháp "thương hiệu lớn".
+## 2. Cài đặt và sử dụng Kerio 
+- Trong bài lab này thực hiện triển khai Kerio trên UBuntu 22.04 ở môi trường local 
+- Domain: annth.io.vn
+- IP: 192.168.56.135
+### 2.1 Cài đặt 
+- Ubuntu Server 22.04
+- Cập nhật và cài đặt các gói cần thiết:
+```
+sudo apt update
+sudo apt upgrade -y 
+sudo apt install 
+``` 
+![image](./images/kerio-1.png)
