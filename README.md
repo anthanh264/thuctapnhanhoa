@@ -1,2 +1,28 @@
 # thuctapnhanhoa
-Ghichep-thuctapnhanhoa
+## NhanHoaIntership 
+1. [Nhân Hoà](https://github.com/anthanh264/thuctapnhanhoa/blob/main/05.05.25/0.NhanHoa.md)  
+2. [GitHub Markdown](https://github.com/anthanh264/thuctapnhanhoa/blob/main/05.05.25/1.Github_markdown.md)  
+3. [DNS](https://github.com/anthanh264/thuctapnhanhoa/blob/main/05.05.25/2.%20DNS.md)  
+4. [LAMP & LEMP](https://github.com/anthanh264/thuctapnhanhoa/blob/main/06.05.25/0.%20LAMP_LEMP.md)  
+5. [WP trên LAMP & LEMP (Single)](https://github.com/anthanh264/thuctapnhanhoa/blob/main/06.05.25/1.%20WP_LAMP_LEMP(Single).md)  
+6. [WP trên LAMP & LEMP (2 nodes)](https://github.com/anthanh264/thuctapnhanhoa/blob/main/06.05.25/2.%20WP_LAMP_LEMP(2%20node).md)  
+7. [Triển khai IIS trên Windows Server](https://github.com/anthanh264/thuctapnhanhoa/blob/main/06.05.25/3.%20Deploy%20Web%20IIS%20Windows%20Server.md)  
+8. [Triển khai Zimbra trên Ubuntu 22.04](https://github.com/anthanh264/thuctapnhanhoa/blob/main/07.05.25/0.%20Tri%E1%BB%83n%20khai%20s%E1%BB%AD%20d%E1%BB%A5ng%20Zimbra%20tr%C3%AAn%20Ubuntu%2022.04.md)  
+9. [Triển khai Kerio trên Ubuntu 22.04](https://github.com/anthanh264/thuctapnhanhoa/blob/main/07.05.25/1.%20Tri%E1%BB%83n%20khai%20s%E1%BB%AD%20d%E1%BB%A5ng%20Kerio%20tr%C3%AAn%20Ubuntu%2022.04.md)  
+10. [Triển khai MDaemon trên Windows Server](https://github.com/anthanh264/thuctapnhanhoa/blob/main/08.05.25/0.%20Tri%E1%BB%83n%20khai%20MDaemon%20tr%C3%AAn%20Windows%20Server.md)  
+11. [Triển khai Prometheus & Grafana](https://github.com/anthanh264/thuctapnhanhoa/blob/main/08.05.25/1.%20Tri%E1%BB%83n%20khai%20Prometheus%20v%C3%A0%20Grafana.md)  
+12. [Tìm hiểu, cài đặt, kết nối NFS](https://github.com/anthanh264/thuctapnhanhoa/blob/main/08.05.25/2.%20T%C3%ACm%20hi%E1%BB%83u%2C%20c%C3%A0i%20%C4%91%E1%BA%B7t%2C%20k%E1%BA%BFt%20n%E1%BB%91i%20NFS.md)  
+13. [Tìm hiểu, cấu hình LVM](https://github.com/anthanh264/thuctapnhanhoa/blob/main/08.05.25/3.%20T%C3%ACm%20hi%E1%BB%83u%2C%20c%E1%BA%A5u%20h%C3%ACnh%20LVM.md)  
+14. [Triển khai HAProxy](https://github.com/anthanh264/thuctapnhanhoa/blob/main/08.05.25/4.%20T%C3%ACm%20hi%E1%BB%83u%2C%20tri%E1%BB%83n%20khai%20HAProxy.md)  
+15. [Triển khai Pfsense](https://github.com/anthanh264/thuctapnhanhoa/blob/main/09.05.25/0.%20T%C3%ACm%20hi%E1%BB%83u%20tri%E1%BB%83n%20khai%20Pfsense.md)  
+16. [Linux, quyền người dùng & Owner](https://github.com/anthanh264/thuctapnhanhoa/blob/main/12.05.25/0.%20T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20Linux%2C%20Owner%2C%20Quy%E1%BB%81n%20v%C3%A0%20Ng%C6%B0%E1%BB%9Di%20d%C3%B9ng.md)  
+17. [Log & Security cơ bản trên Linux](https://github.com/anthanh264/thuctapnhanhoa/blob/main/13.05.25/0.%20Log%20v%C3%A0%20Security%20c%C6%A1%20b%E1%BA%A3n%20tr%C3%AAn%20Linux.md)  
+18. [Log & Security cơ bản trên Windows](https://github.com/anthanh264/thuctapnhanhoa/blob/main/14.05.25/0.%20T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20log%20v%C3%A0%20security%20c%C6%A1%20b%E1%BA%A3n%20tr%C3%AAn%20Windows.md)  
+19. [Firewall](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.05.25/0.%20Firewall.md)  
+20. [Thực hành tường lửa Linux](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.05.25/1.%20Th%E1%BB%B1c%20h%C3%A0nh%20t%C6%B0%E1%BB%9Dng%20l%E1%BB%ADa%20Linux.md)  
+21. [Thực hành tường lửa Windows](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.05.25/2.%20Th%E1%BB%B1c%20h%C3%A0nh%20t%C6%B0%E1%BB%9Dng%20l%E1%BB%ADa%20Windows.md)  
+22. [Tìm hiểu tcpdump & Wireshark](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.05.25/3.%20T%C3%ACm%20hi%E1%BB%83u%20tcpdump%20%26%20Wireshark.md)  
+23. [Webserver](https://github.com/anthanh264/thuctapnhanhoa/blob/main/26.05.25/0.%20Webserver.md)  
+24. [FTP Server](https://github.com/anthanh264/thuctapnhanhoa/blob/main/30.05.25/0.%20FTP%20Server.md)  
+
+
