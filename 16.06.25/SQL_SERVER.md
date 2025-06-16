@@ -1,4 +1,31 @@
+<!-- TOC --><a name="sql-server"></a>
 # SQL SERVER 
+***
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [SQL SERVER ](#sql-server)
+   * [1. Tổng quan ](#1-tng-quan)
+   * [2. Cài đặt và cấu hình tối ưu ](#2-cài-t-và-cu-hình-ti-u)
+      + [2.1 Yêu cầu hệ thống   ](#21-yêu-cu-h-thng)
+      + [2.2 Quy trình cài đặt cơ bản](#22-quy-trình-cài-t-c-bn)
+         - [Windows   ](#windows)
+         - [Linux (Ubuntu)](#linux-ubuntu)
+      + [2.3 Cấu hình tối ưu hiệu năng](#23-cu-hình-ti-u-hiu-nng)
+      + [2.4 Cấu hình bảo mật cơ bản](#24-cu-hình-bo-mt-c-bn)
+      + [2.5 Backup và Restore ](#25-backup-và-restore)
+      + [2.6 Giám sát cơ bản  ](#26-giám-sát-c-bn)
+      + [2.7 Tối ưu truy vấn ](#27-ti-u-truy-vn)
+      + [2.8 Transaction và Log ](#28-transaction-và-log)
+      + [2.9 Bảo mật, mã hoá ](#29-bo-mt-mã-hoá)
+   * [3. Các mô hình HA, cluster, replica ](#3-các-mô-hình-ha-cluster-replica)
+      + [3.1 SQL Server Replica ](#31-sql-server-replica)
+      + [3.2 SQL Failover Cluster ](#32-sql-failover-cluster)
+      + [3.3 SQL Always On availability groups](#33-sql-always-on-availability-groups)
+
+<!-- TOC end -->
+
+
+<!-- TOC --><a name="1-tng-quan"></a>
 ## 1. Tổng quan 
 - Microsoft SQL Server là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS). Các ứng dụng và công cụ có thể kết nối với một phiên bản SQL Server hoặc một cơ sở dữ liệu, sử dụng Transact-SQL (T-SQL) để giao tiếp và thực hiện truy vấn dữ liệu.
 - SQL Server được phát triển bởi Microsoft, hỗ trợ nhiều tính năng mạnh mẽ như quản lý giao dịch, xử lý dữ liệu lớn, bảo mật nâng cao, và khả năng tích hợp với các dịch vụ đám mây.
@@ -57,7 +84,9 @@
 	- Tùy chỉnh phức tạp, có thể cần nhiều tài nguyên phát triển bổ sung.
 	- Hỗ trợ hạn chế đối với công nghệ mã nguồn mở, so với một số hệ thống khác.
 	- Ràng buộc với nhà cung cấp, có thể gây khó khăn trong việc chuyển đổi sang hệ thống khác trong tương lai.
+<!-- TOC --><a name="2-cài-t-và-cu-hình-ti-u"></a>
 ## 2. Cài đặt và cấu hình tối ưu 
+<!-- TOC --><a name="21-yêu-cu-h-thng"></a>
 ### 2.1 Yêu cầu hệ thống   
 - Trên Windows 
 	- Phần cứng:  
@@ -84,7 +113,7 @@
 		- Hệ thống tập tin mạng (NFS): Phiên bản 4.2 trở lên.  
 		- Lưu ý: Thư mục `/var/opt/mssql` chỉ có thể được gắn kết trên NFS.  
 
-<!-- TOC --><a name="322-quy-trình-cài-t-c-bn"></a>
+<!-- TOC --><a name="22-quy-trình-cài-t-c-bn"></a>
 ### 2.2 Quy trình cài đặt cơ bản
 <!-- TOC --><a name="windows"></a>
 #### Windows   
@@ -220,7 +249,7 @@ exit
 - ![images](./images/d-76.png)
 - ![images](./images/d-78.png)
 
-<!-- TOC --><a name="323-cu-hình-ti-u-hiu-nng"></a>
+<!-- TOC --><a name="23-cu-hình-ti-u-hiu-nng"></a>
 ### 2.3 Cấu hình tối ưu hiệu năng
 - Cấu hình dung lượng RAM tối đa: Tại server SQL chọn Properties 
 - ![images](./images/d-82.png)
@@ -307,7 +336,7 @@ exit
 		- Số lỗi trong kế hoạch mới nhiều hơn số lỗi trong kế hoạch được đề xuất.
 		- Ngoài ra, hệ thống sẽ kiểm tra lại để đảm bảo kế hoạch ép buộc tốt hơn kế hoạch hiện tại.
 
-<!-- TOC --><a name="324-cu-hình-bo-mt-c-bn"></a>
+<!-- TOC --><a name="24-cu-hình-bo-mt-c-bn"></a>
 ### 2.4 Cấu hình bảo mật cơ bản
 - Disable xp_cmdshell: Tắt để tránh chạy lệnh hệ thống từ SQL
 	- Có thể cấu hình giá trị này thông qua query 	 
@@ -396,6 +425,7 @@ exit
 	DECRYPTION BY PASSWORD = '5R^0g6EW92g6C&/pz90yx%)' );
 	```
 
+<!-- TOC --><a name="25-backup-và-restore"></a>
 ### 2.5 Backup và Restore 
 - Backup 
 	- Sử dụng SSMS 
@@ -439,6 +469,7 @@ exit
 		```
 		- ![images](./images/d-256.png)  
 
+<!-- TOC --><a name="26-giám-sát-c-bn"></a>
 ### 2.6 Giám sát cơ bản  
 - Sử dụng T-SQL 
 	- Theo dõi trạng thái hệ thống với `sys.dm_os_wait_stats`
@@ -482,6 +513,7 @@ exit
 	- ![images](./images/d-280.png)
 	- ![images](./images/d-281.png)
 
+<!-- TOC --><a name="27-ti-u-truy-vn"></a>
 ### 2.7 Tối ưu truy vấn 
 - Ngôn ngữ truy vấn có cấu trúc (SQL) là một ngôn ngữ lập trình tiêu chuẩn dùng để quản lý các cơ sở dữ liệu quan hệ. SQL Server là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS) do Microsoft phát triển.
 - Khi làm việc với lượng dữ liệu lớn, việc tối ưu hóa truy vấn để đạt hiệu suất tốt hơn là rất quan trọng. Các kỹ thuật tối ưu hóa truy vấn được sử dụng để đạt được mục tiêu này. SQL Server, một trong những hệ quản trị cơ sở dữ liệu quan hệ phổ biến nhất, cung cấp nhiều phương pháp để tối ưu hóa truy vấn.
@@ -561,6 +593,7 @@ exit
 	Bảng tạm giúp giảm khối lượng dữ liệu phải xử lý, tối ưu hóa truy vấn và cải thiện hiệu suất. 
 	- ![images](./images/d-313.png)
 
+<!-- TOC --><a name="28-transaction-và-log"></a>
 ### 2.8 Transaction và Log 
 - Transaction
 	- Các lệnh cơ bản của giao dịch trong SQL
@@ -692,6 +725,7 @@ exit
 	- ![images](./images/d-334.png)
 	- ![images](./images/d-335.png)
 	
+<!-- TOC --><a name="29-bo-mt-mã-hoá"></a>
 ### 2.9 Bảo mật, mã hoá 
 - SQL Server hỗ trợ nhiều phương thức mã hoá trong đó có Transparent Data Encryption(TDE),Column-Level Encryption (CLE) và mã hoá dữ liệu khi truyền sử dụng ssl/TLS
 - Transparent Data Encryption(TDE)
@@ -947,7 +981,9 @@ exit
 	GO
 	```
 
+<!-- TOC --><a name="3-các-mô-hình-ha-cluster-replica"></a>
 ## 3. Các mô hình HA, cluster, replica 
+<!-- TOC --><a name="31-sql-server-replica"></a>
 ### 3.1 SQL Server Replica 
 - SQL server replication là một bộ các giải pháp cho phép sao chép và phân phối cơ sở dữ liệu giữa các SQL server và đồng bộ chúng nhằm duy trì tính nhất quán dữ liệu.
 - Sử dụng replication, chúng ta có thể phân phối dữ liệu đến nhiều SQL server khác nhau hay truy cập từ xa thông qua mạng cục bộ hay internet. Replication cũng nâng cao tính thực hiện hay phân phối CSDL trên nhiều Server với nhau.
@@ -1066,6 +1102,7 @@ exit
 			- Query data trên máy 2 thu được kết quả-> đã đồng bộ 
 			- [images](./images/d-515.png)
 
+<!-- TOC --><a name="32-sql-failover-cluster"></a>
 ### 3.2 SQL Failover Cluster 
 - SQL Server Failover Cluster là một giải pháp có tính sẵn sàng cao (HA - High Availability), giúp đảm bảo hệ thống cơ sở dữ liệu hoạt động liên tục ngay cả khi một máy chủ gặp sự cố.
 - Cấu trúc của SQL Server Failover Cluster: Một cụm Failover Cluster bao gồm:
@@ -1232,6 +1269,7 @@ exit
 			```
 			- ![images](./images/d-648.png)
 	
+<!-- TOC --><a name="33-sql-always-on-availability-groups"></a>
 ### 3.3 SQL Always On availability groups
 - Always On availability groups là một giải pháp sẵn sàng cao và khôi phục thảm họa cho SQL Server, thay thế database mirroring với độ ổn định và khả năng mở rộng tốt hơn. Nó giúp nhân bản cơ sở dữ liệu trên nhiều phiên bản, đảm bảo hệ thống luôn hoạt động và tự động chuyển đổi khi xảy ra sự cố.
 - Tính năng & Lợi ích
