@@ -88,7 +88,7 @@
 ### 2.2 Quy trình cài đặt cơ bản
 <!-- TOC --><a name="windows"></a>
 #### Windows   
-- Truy cập trang chru để tải file cài 
+- Truy cập trang chủ để tải file cài 
 - ![images](./images/d-37.png)
 - Chạy file launcher để tải file cài đặt: Chọn express advanced 
 - ![images](./images/d-38.png)
@@ -692,7 +692,7 @@ exit
 	- ![images](./images/d-334.png)
 	- ![images](./images/d-335.png)
 	
-### 2.9 Bảo mật 
+### 2.9 Bảo mật, mã hoá 
 - SQL Server hỗ trợ nhiều phương thức mã hoá trong đó có Transparent Data Encryption(TDE),Column-Level Encryption (CLE) và mã hoá dữ liệu khi truyền sử dụng ssl/TLS
 - Transparent Data Encryption(TDE)
 	- TDE mã hóa toàn bộ cơ sở dữ liệu, bao gồm dữ liệu thực tế và các tệp nhật ký khi lưu trữ. Quá trình này hoạt động liền mạch trong nền mà không ảnh hưởng đến hiệu suất của chương trình người dùng.
