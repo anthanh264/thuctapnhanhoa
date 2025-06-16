@@ -1118,6 +1118,41 @@ exit
 | sql-win.annt.cloud     | 192.168.50.3     | Windows Server 2022   |
 | sql-win-2.annt.cloud   | 192.168.50.4     | Windows Server 2022   |
 
+- Mô hình 
+```mermaid
+flowchart TD
+ subgraph SharedStorage["SharedStorage"]
+    direction TB
+        Disk1["Disk 1: Quorum Witness"]
+        Disk2["Disk 2: SQL Server Data"]
+        Disk3["Disk 3: Dự phòng"]
+  end
+    DC["Domain Controller 
+    dc.annt.cloud 
+    192.168.50.10"] --> StorageNote["iSCSI Target (Quản lý Storage)"]
+    StorageNote --> SharedStorage
+    SharedStorage --> SQL1["SQL Node1
+     sql-win 
+     192.168.50.3"] & SQL2["SQL Node2 
+    sql-win-2 192.168.50.4"]
+    SQL1 --> Cluster["Failover Cluster Engine"]
+    SQL2 --> Cluster
+    Cluster --> ActiveSQL["Active SQL Instance\n(MSSQLSERVER)"] & PassiveSQL["Passive/Standby Node\n(Backup)"]
+
+     Cluster:::cluster
+     ActiveSQL:::active
+     PassiveSQL:::passive
+    classDef dc fill:#f9f,stroke:#333,stroke-width:2px
+    classDef link fill:#ffd,stroke:#555,stroke-width:2px
+    classDef disk1 fill:#e0f7fa,stroke:#00796b,stroke-width:2px
+    classDef disk2 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef disk3 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef node1 fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef node2 fill:#ede7f6,stroke:#4527a0,stroke-width:2px
+    classDef cluster fill:#f5f5f5,stroke:#212121,stroke-width:2px
+    classDef active fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    classDef passive fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
+```
 - 2 node đã join domain annt.cloud
 - Trên máy DC
 	- Cài đặt iSCSI Target Server. Sau đó tạo ra các iSCSI Virtual Disks để cho phép các nodes sql kết nối, lưu trữ dữ liệu thông qua giao thức iSCSI. 
@@ -1300,35 +1335,39 @@ exit
 
 - Mô Hình 
 ```mermaid
-flowchart TB
-    subgraph WSFC["WSFC: Windows Server Failover Cluster"]
-        subgraph Region1["Region 1"]
-            Primary["Primary Replica\nAG1"]
-            Secondary1["Secondary Replica 1\nAG1 (HA)"]
-        end
+flowchart TD
+    %% Styles
+    classDef client fill:#eef7f9,stroke:#2c82c9,color:#2c82c9,font-weight:bold;
+    classDef listener fill:#f0f0f0,stroke:#555,color:#333,font-weight:bold;
+    classDef primary fill:#e6f4ea,stroke:#4caf50,color:#2e7d32;
+    classDef secondary fill:#fffbe6,stroke:#ff9800,color:#ef6c00;
+    classDef witness fill:#fce8e6,stroke:#d32f2f,color:#b71c1c;
+    classDef domain fill:#eeeeee,stroke:#616161,color:#212121;
 
-        subgraph Region2["Region 2"]
-            Secondary2["Secondary Replica 2\nAG1 (DR)"]
-        end
-    end
+    %% Nodes
+    Client["Ứng dụng Client<br/>(Web/API/App Layer)"]
+    Listener["AOAG Listener<br/>AOAG-LISTENER (Virtual IP)"]
+    Primary["Node 1 - PRIMARY<br/>sql-win.annt.cloud<br/>192.168.50.3<br/>SQL_AOAG1<br/><b>Primary Replica</b><br/>Sync Commit"]
+    Secondary["Node 2 - SECONDARY<br/>sql-win-2.annt.cloud<br/>192.168.50.4<br/>SQL_AOAG2<br/><b>Readable Secondary</b><br/>Auto Failover"]
+    FileShare["File Share Witness<br/>\\\\dc\\SQLCluster"]
+    DC["Domain Controller<br/>dc.annt.cloud<br/>192.168.50.10<br/>Domain: annt.cloud"]
 
-    Users --> Listener["AG Listener"]
+    %% Edges
+    Client --> Listener
     Listener --> Primary
+    Listener --> Secondary
+    Primary --> FileShare
+    Secondary --> FileShare
+    FileShare --> DC
 
-    Primary -->|Synchronous Commit| Secondary1
-    Primary -.->|Asynchronous Commit| Secondary2
+    %% Class Assignment
+    class Client client
+    class Listener listener
+    class Primary primary
+    class Secondary secondary
+    class FileShare witness
+    class DC domain
 
-    %% Định nghĩa style
-    classDef primary fill:#c6f6d5,stroke:#38a169,stroke-width:2px,color:#1a202c;
-    classDef secondary fill:#bee3f8,stroke:#3182ce,stroke-width:2px,color:#1a202c;
-    classDef dr fill:#fed7d7,stroke:#e53e3e,stroke-width:2px,color:#1a202c;
-    classDef listener fill:#fefcbf,stroke:#d69e2e,stroke-width:2px,color:#1a202c;
-
-    %% Gán style cho node
-    class Primary primary;
-    class Secondary1 secondary;
-    class Secondary2 dr;
-    class Listener listener;
 ```
 - Điều kiện 
 	- Các node SQLSERVER đều đã join vào domain `annt.cloud` do DC quản lý.
