@@ -1,4 +1,5 @@
-SQL SERVER 
+# SQL SERVER 
+## 1. Tổng quan 
 - Microsoft SQL Server là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS). Các ứng dụng và công cụ có thể kết nối với một phiên bản SQL Server hoặc một cơ sở dữ liệu, sử dụng Transact-SQL (T-SQL) để giao tiếp và thực hiện truy vấn dữ liệu.
 - SQL Server được phát triển bởi Microsoft, hỗ trợ nhiều tính năng mạnh mẽ như quản lý giao dịch, xử lý dữ liệu lớn, bảo mật nâng cao, và khả năng tích hợp với các dịch vụ đám mây.
 - SQL Server cung cấp nhiều công nghệ quan trọng giúp quản lý, phân tích và xử lý dữ liệu hiệu quả. Dưới đây là một số thành phần chính:
@@ -56,7 +57,8 @@ SQL SERVER
 	- Tùy chỉnh phức tạp, có thể cần nhiều tài nguyên phát triển bổ sung.
 	- Hỗ trợ hạn chế đối với công nghệ mã nguồn mở, so với một số hệ thống khác.
 	- Ràng buộc với nhà cung cấp, có thể gây khó khăn trong việc chuyển đổi sang hệ thống khác trong tương lai.
-#### 3.2.1 Yêu cầu hệ thống  
+## 2. Cài đặt và cấu hình tối ưu 
+### 2.1 Yêu cầu hệ thống   
 - Trên Windows 
 	- Phần cứng:  
 		- Bộ xử lý: X64, tối thiểu 1.4 GHz (khuyến nghị 2.0 GHz+).  
@@ -83,9 +85,9 @@ SQL SERVER
 		- Lưu ý: Thư mục `/var/opt/mssql` chỉ có thể được gắn kết trên NFS.  
 
 <!-- TOC --><a name="322-quy-trình-cài-t-c-bn"></a>
-#### 3.2.2 Quy trình cài đặt cơ bản
+### 2.2 Quy trình cài đặt cơ bản
 <!-- TOC --><a name="windows"></a>
-##### Windows   
+#### Windows   
 - Truy cập trang chru để tải file cài 
 - ![images](./images/d-37.png)
 - Chạy file launcher để tải file cài đặt: Chọn express advanced 
@@ -142,7 +144,7 @@ SQL SERVER
 - Kết nối thành công 
 - ![images](./images/d-74.png)
 <!-- TOC --><a name="linux-ubuntu"></a>
-##### Linux (Ubuntu)
+#### Linux (Ubuntu)
 - Thêm SQL Server 2022 Repository và cài đặt 
 ```
 wget https://packages.microsoft.com/keys/microsoft.asc -O /etc/apt/keyrings/mssql2022.key
@@ -219,7 +221,7 @@ exit
 - ![images](./images/d-78.png)
 
 <!-- TOC --><a name="323-cu-hình-ti-u-hiu-nng"></a>
-#### 3.2.3 Cấu hình tối ưu hiệu năng
+### 2.3 Cấu hình tối ưu hiệu năng
 - Cấu hình dung lượng RAM tối đa: Tại server SQL chọn Properties 
 - ![images](./images/d-82.png)
 - ![images](./images/d-81.png)
@@ -306,7 +308,7 @@ exit
 		- Ngoài ra, hệ thống sẽ kiểm tra lại để đảm bảo kế hoạch ép buộc tốt hơn kế hoạch hiện tại.
 
 <!-- TOC --><a name="324-cu-hình-bo-mt-c-bn"></a>
-#### 3.2.4 Cấu hình bảo mật cơ bản
+### 2.4 Cấu hình bảo mật cơ bản
 - Disable xp_cmdshell: Tắt để tránh chạy lệnh hệ thống từ SQL
 	- Có thể cấu hình giá trị này thông qua query 	 
 	```
@@ -394,8 +396,7 @@ exit
 	DECRYPTION BY PASSWORD = '5R^0g6EW92g6C&/pz90yx%)' );
 	```
 
- 
-#### 4.2.2 SQL Server 
+### 2.5 Backup và Restore 
 - Backup 
 	- Sử dụng SSMS 
 		- Khởi chạy SQL Server Management Studio (SSMS) và kết nối với phiên bản SQL Server.
@@ -438,7 +439,7 @@ exit
 		```
 		- ![images](./images/d-256.png)  
 
-#### 4.3.2 SQL Server 
+### 2.6 Giám sát cơ bản  
 - Sử dụng T-SQL 
 	- Theo dõi trạng thái hệ thống với `sys.dm_os_wait_stats`
 	- Kiểm tra các loại độ trễ xảy ra trong SQL Server:
@@ -480,7 +481,8 @@ exit
 	- ![images](./images/d-278.png)
 	- ![images](./images/d-280.png)
 	- ![images](./images/d-281.png)
-#### 4.4.2 SQL SERVER 
+
+### 2.7 Tối ưu truy vấn 
 - Ngôn ngữ truy vấn có cấu trúc (SQL) là một ngôn ngữ lập trình tiêu chuẩn dùng để quản lý các cơ sở dữ liệu quan hệ. SQL Server là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS) do Microsoft phát triển.
 - Khi làm việc với lượng dữ liệu lớn, việc tối ưu hóa truy vấn để đạt hiệu suất tốt hơn là rất quan trọng. Các kỹ thuật tối ưu hóa truy vấn được sử dụng để đạt được mục tiêu này. SQL Server, một trong những hệ quản trị cơ sở dữ liệu quan hệ phổ biến nhất, cung cấp nhiều phương pháp để tối ưu hóa truy vấn.
 - Sử dụng Indexes
@@ -558,7 +560,8 @@ exit
 	- Trong ví dụ này, tạo một bảng tạm có tên #tempOrders để lưu trữ kết quả của truy vấn "SELECT CustomerID, OrderTotal FROM Orders WHERE OrderDate BETWEEN '2020-01-01' AND '2020-12-31'." Ở bước cuối cùng, sử dụng bảng tạm để nhóm kết quả theo CustomerID và tính tổng giá trị đơn hàng (OrderTotal).
 	Bảng tạm giúp giảm khối lượng dữ liệu phải xử lý, tối ưu hóa truy vấn và cải thiện hiệu suất. 
 	- ![images](./images/d-313.png)
-#### 4.5.2 SQL Server 
+
+### 2.8 Transaction và Log 
 - Transaction
 	- Các lệnh cơ bản của giao dịch trong SQL
 		- BEGIN TRANSACTION hoặc BEGIN TRAN → Bắt đầu một giao dịch mới.
@@ -688,7 +691,8 @@ exit
 	```
 	- ![images](./images/d-334.png)
 	- ![images](./images/d-335.png)
-#### 5.2.2 SQL Server 
+	
+### 2.9 Bảo mật 
 - SQL Server hỗ trợ nhiều phương thức mã hoá trong đó có Transparent Data Encryption(TDE),Column-Level Encryption (CLE) và mã hoá dữ liệu khi truyền sử dụng ssl/TLS
 - Transparent Data Encryption(TDE)
 	- TDE mã hóa toàn bộ cơ sở dữ liệu, bao gồm dữ liệu thực tế và các tệp nhật ký khi lưu trữ. Quá trình này hoạt động liền mạch trong nền mà không ảnh hưởng đến hiệu suất của chương trình người dùng.
@@ -942,7 +946,9 @@ exit
 	WITH (STATE = ON);
 	GO
 	```
-#### 6.1.2 SQL Server Replica
+
+## 3. Các mô hình HA, cluster, replica 
+### 3.1 SQL Server Replica 
 - SQL server replication là một bộ các giải pháp cho phép sao chép và phân phối cơ sở dữ liệu giữa các SQL server và đồng bộ chúng nhằm duy trì tính nhất quán dữ liệu.
 - Sử dụng replication, chúng ta có thể phân phối dữ liệu đến nhiều SQL server khác nhau hay truy cập từ xa thông qua mạng cục bộ hay internet. Replication cũng nâng cao tính thực hiện hay phân phối CSDL trên nhiều Server với nhau.
 - Thuật ngữ liên quan tới replication trong SQL Server
@@ -1060,7 +1066,7 @@ exit
 			- Query data trên máy 2 thu được kết quả-> đã đồng bộ 
 			- [images](./images/d-515.png)
 
-#### 6.2.2 SQL SERVER: 
+### 3.2 SQL Failover Cluster 
 - SQL Server Failover Cluster là một giải pháp có tính sẵn sàng cao (HA - High Availability), giúp đảm bảo hệ thống cơ sở dữ liệu hoạt động liên tục ngay cả khi một máy chủ gặp sự cố.
 - Cấu trúc của SQL Server Failover Cluster: Một cụm Failover Cluster bao gồm:
 	- Nút chính (Primary Node): Máy chủ SQL Server đang hoạt động.
@@ -1199,7 +1205,7 @@ exit
 			- Quá trình di chuyển thành công, SQL Server (MSSQLSERVER) đang có trạng thái Running và đang có Owner là node 2 `sql-win-2`
 		- Kiểm tra quá trình Failover của Cluster SQL
 			- Hiện tại MSSQLSERVER đang chạy trên node 2 `sql-win-2`. Thực hiện disable card mạng của Node 2:
-			- ![images](./images/d-638.png)
+			- ![images](./images/d-639.png)
 			- Tại TAB Nodes, trạng thái của SQL02 đang là Down:
 			- ![images](./images/d-640.png)
 			- Cluster thực hiện chuyển lại sang node 1 
@@ -1226,26 +1232,26 @@ exit
 			```
 			- ![images](./images/d-648.png)
 	
-- SQL Server : Always on Availability Group 
-	- Always On availability groups là một giải pháp sẵn sàng cao và khôi phục thảm họa cho SQL Server, thay thế database mirroring với độ ổn định và khả năng mở rộng tốt hơn. Nó giúp nhân bản cơ sở dữ liệu trên nhiều phiên bản, đảm bảo hệ thống luôn hoạt động và tự động chuyển đổi khi xảy ra sự cố.
-	- Tính năng & Lợi ích
-		- Sẵn sàng cao: Duy trì nhiều bản sao để giảm thời gian ngừng hoạt động.
-		- Khôi phục thảm họa: Cho phép sao chép dữ liệu sang site dự phòng và failover nhanh chóng.
-		- Mở rộng quy mô: Hỗ trợ nhiều bản sao phụ, giúp tăng hiệu suất và dung lượng.
-		- Giảm độ trễ: Chế độ synchronous commit đảm bảo dữ liệu được nhân bản tức thời.
-		- Tối ưu hóa đọc: Bản sao phụ có thể cấu hình chỉ đọc để giảm tải cho bản chính.
-		- Không cần lưu trữ chung: Linh hoạt hơn so với database mirroring.
-		- Quản lý đơn giản: Microsoft cung cấp công cụ giám sát dễ sử dụng.
-		- **Hỗ trợ cả synchronous & asynchronous commit, giúp điều chỉnh độ trễ failover.
-	- Thành phần chính
-		- Availability Group: Nhóm chứa một hoặc nhiều database cùng bản sao.
-		- Availability Replica: Máy chủ chứa bản sao database.
-		- Primary Replica: Phiên bản chính, nơi xử lý cả đọc/ghi.
-		- Secondary Replica: Phiên bản dự phòng, có thể trở thành primary khi failover.
-		- Availability Mode: Chọn synchronous hoặc asynchronous để điều chỉnh việc nhân bản dữ liệu.
-		- Listeners: Điểm kết nối chung cho ứng dụng.
-	- SQL Always On Availability Groups được Microsoft giới thiệu lần đầu tiên trong bản SQL Server 2012 Enterprise như một chức năng nâng cao nhằm tăng độ sẳn sàng cho hệ thống Database mà không cần sử dụng các Shared Storage từ SAN hay NAS như mô hình SQL Cluster truyền thống (Failover Clustering).
-	- Cấu hình 
+### 3.3 SQL Always On availability groups
+- Always On availability groups là một giải pháp sẵn sàng cao và khôi phục thảm họa cho SQL Server, thay thế database mirroring với độ ổn định và khả năng mở rộng tốt hơn. Nó giúp nhân bản cơ sở dữ liệu trên nhiều phiên bản, đảm bảo hệ thống luôn hoạt động và tự động chuyển đổi khi xảy ra sự cố.
+- Tính năng & Lợi ích
+	- Sẵn sàng cao: Duy trì nhiều bản sao để giảm thời gian ngừng hoạt động.
+	- Khôi phục thảm họa: Cho phép sao chép dữ liệu sang site dự phòng và failover nhanh chóng.
+	- Mở rộng quy mô: Hỗ trợ nhiều bản sao phụ, giúp tăng hiệu suất và dung lượng.
+	- Giảm độ trễ: Chế độ synchronous commit đảm bảo dữ liệu được nhân bản tức thời.
+	- Tối ưu hóa đọc: Bản sao phụ có thể cấu hình chỉ đọc để giảm tải cho bản chính.
+	- Không cần lưu trữ chung: Linh hoạt hơn so với database mirroring.
+	- Quản lý đơn giản: Microsoft cung cấp công cụ giám sát dễ sử dụng.
+	- **Hỗ trợ cả synchronous & asynchronous commit, giúp điều chỉnh độ trễ failover.
+- Thành phần chính
+	- Availability Group: Nhóm chứa một hoặc nhiều database cùng bản sao.
+	- Availability Replica: Máy chủ chứa bản sao database.
+	- Primary Replica: Phiên bản chính, nơi xử lý cả đọc/ghi.
+	- Secondary Replica: Phiên bản dự phòng, có thể trở thành primary khi failover.
+	- Availability Mode: Chọn synchronous hoặc asynchronous để điều chỉnh việc nhân bản dữ liệu.
+	- Listeners: Điểm kết nối chung cho ứng dụng.
+- SQL Always On Availability Groups được Microsoft giới thiệu lần đầu tiên trong bản SQL Server 2012 Enterprise như một chức năng nâng cao nhằm tăng độ sẳn sàng cho hệ thống Database mà không cần sử dụng các Shared Storage từ SAN hay NAS như mô hình SQL Cluster truyền thống (Failover Clustering).
+- Cấu hình 
 	- Triển khai trên 3 máy 1 DC 2 Node SQLSERVER 
 
 	| Tên Máy Chủ             | Địa Chỉ IP       | Hệ Điều Hành         |
@@ -1254,9 +1260,9 @@ exit
 	| sql-win.annt.cloud     | 192.168.50.3     | Windows Server 2022   |
 	| sql-win-2.annt.cloud   | 192.168.50.4     | Windows Server 2022   |
 
-	- Mô Hình 
-	```mermaid
-	flowchart TB
+- Mô Hình 
+```mermaid
+flowchart TB
     subgraph WSFC["WSFC: Windows Server Failover Cluster"]
         subgraph Region1["Region 1"]
             Primary["Primary Replica\nAG1"]
@@ -1285,115 +1291,114 @@ exit
     class Secondary1 secondary;
     class Secondary2 dr;
     class Listener listener;
-	```
-	- Điều kiện 
-		- Các node SQLSERVER đều đã join vào domain `annt.cloud` do DC quản lý.
-		- Các node đều đã cài SQLSERVER Standalone ở đây đã cài với instance ID: SQL_AOAG1 và SQL_AOAG2
-		- ![images](./images/d-703.png) 
-		- ![images](./images/d-704.png) 
+```
+- Điều kiện 
+	- Các node SQLSERVER đều đã join vào domain `annt.cloud` do DC quản lý.
+	- Các node đều đã cài SQLSERVER Standalone ở đây đã cài với instance ID: SQL_AOAG1 và SQL_AOAG2
+	- ![images](./images/d-703.png) 
+	- ![images](./images/d-704.png) 
 	- Trên máy DC tạo 2 folder share 
 		- SQLCluster : dùng làm witness storage cho failover 
 		- SQL_AOAGDB : dùng làm nơi lưu log, backup data giữa các node 
 
-	- Cài đặt Windows Clustering trên các Cluster Nodes
-		- Thực hiện enable Failover Clustering: Trong Server Manager -> Add Roles and Features -> Failover Clustering
-		- ![images](./images/d-583.png)
-		- ![images](./images/d-584.png)
-		- ![images](./images/d-585.png)
-		- ![images](./images/d-586.png)
-		- ![images](./images/d-587.png)
-		- ![images](./images/d-588.png)
-		- ![images](./images/d-589.png)
-		- ![images](./images/d-591.png)
-		- Thực hiện tạo Cluster : Tools -> Failover Cluster Manager
-		- ![images](./images/d-592.png)
-		- Click chuột phải vào Failover Cluster Manager -> Create Cluster 
-		- ![images](./images/d-594.png)
-		- Next 
-		- ![images](./images/d-595.png)
-		- Thêm hostname các node sql và chọn next
-		- ![images](./images/d-597.png)
-		- Bỏ qua validation test -> Next	
-		- ![images](./images/d-598.png)
-		- Đặt tên, cấu hình IP 
-		- ![images](./images/d-599.png)
-		- Xem lại cấu hình 
-		- ![images](./images/d-600.png)
-		- Cluster được tạo 
-		- ![images](./images/d-601.png)
-		- ![images](./images/d-602.png)
-		- ![images](./images/d-603.png)
-		- Cấu hình Witness
-		- Tại phần cài đặt cluster 
-		- ![images](./images/d-643.png)
-		- Chọn `Select ..`
-		- ![images](./images/d-705.png)
-		- Chọn cấu hình dạng share file 
-		- ![images](./images/d-706.png)
-		- Điền đường dẫn thư mục share đã tạo 
-		- ![images](./images/d-707.png)
-		- Next để tạo witness 
-		- ![images](./images/d-708.png)
-		
-	- Cấu hình Always On Availability Groups trên các SQL Cluster Nodes
-		- Trong SQL Server Configuration Manager của cả 2 node, trỏ phải lên SQL Server tương ứng rồi chọn Properties	
-		- ![images](./images/d-709.png)
-		- Tại tab AlwaysOn High Availability tích Enable -> Apply -> OK 
-		- ![images](./images/d-710.png)
-		- Restart service để apply 
-		- ![images](./images/d-712.png)
-		- Backup database (database nằm trên node 1)
-		- ![images](./images/d-714.png)
-		- ![images](./images/d-715.png)
-		- Tạo Always On Availability Groups
-		- Tại phần Always On High Availability -> Availability Groups. Click chuột phải chọn `New Availability Groups Wizard`
-		- ![images](./images/d-716.png)
-		- ![images](./images/d-717.png)
-		- Cấu hình tên và tích chọn `Data Level Health Dectection` 
-		- ![images](./images/d-731.png)
-		- Chọn DB cần thêm vào AOAG
-		- ![images](./images/d-719.png)
-		- Chọn Add Replica 
-		- ![images](./images/d-720.png)
-		- Login vào sqlserver node2 
-		- ![images](./images/d-721.png)
-		- Tích `Automatic Failover`, `Readable Secondary` = Yes
-		- ![images](./images/d-722.png)
-		- Chọn tab Listener: Cấu hình tên, port và IP 
-		- ![images](./images/d-723.png)
-		- Cấu hình nơi lưu DB và log: trỏ về thư mục share đã tạo từ trước 
-		- ![images](./images/d-724.png)
-		- Validation 
-		- ![images](./images/d-725.png)
-		- Cấu hình hoàn tất 
-		- ![images](./images/d-727.png)
+- Cài đặt Windows Clustering trên các Cluster Nodes
+	- Thực hiện enable Failover Clustering: Trong Server Manager -> Add Roles and Features -> Failover Clustering
+	- ![images](./images/d-583.png)
+	- ![images](./images/d-584.png)
+	- ![images](./images/d-585.png)
+	- ![images](./images/d-586.png)
+	- ![images](./images/d-587.png)
+	- ![images](./images/d-588.png)
+	- ![images](./images/d-589.png)
+	- ![images](./images/d-591.png)
+	- Thực hiện tạo Cluster : Tools -> Failover Cluster Manager
+	- ![images](./images/d-592.png)
+	- Click chuột phải vào Failover Cluster Manager -> Create Cluster 
+	- ![images](./images/d-594.png)
+	- Next 
+	- ![images](./images/d-595.png)
+	- Thêm hostname các node sql và chọn next
+	- ![images](./images/d-597.png)
+	- Bỏ qua validation test -> Next
+	- ![images](./images/d-598.png)
+	- Đặt tên, cấu hình IP 
+	- ![images](./images/d-599.png)
+	- Xem lại cấu hình 
+	- ![images](./images/d-600.png)
+	- Cluster được tạo 
+	- ![images](./images/d-601.png)
+	- ![images](./images/d-602.png)
+	- ![images](./images/d-603.png)
+	- Cấu hình Witness
+	- Tại phần cài đặt cluster 
+	- ![images](./images/d-643.png)
+	- Chọn `Select ..`
+	- ![images](./images/d-705.png)
+	- Chọn cấu hình dạng share file 
+	- ![images](./images/d-706.png)
+	- Điền đường dẫn thư mục share đã tạo 
+	- ![images](./images/d-707.png)
+	- Next để tạo witness 
+	- ![images](./images/d-708.png)
 
-	- Kiểm tra 
-		- Kiểm tra nhận thấy quá trình synchronous diễn ra 
-		- ![images](./images/d-728.png)
-		- Kiểm tra Dashboard : Tại Always On Availability Groups -> Click chuột phải vào và chọn Show Dashboards 
-		- ![images](./images/d-729.png)
-		- ![images](./images/d-730.png)
-		- Tại Failover Cluster Manager hiển thị Roles mới tạo, có thể chuyển qua lại giữa các node giống 
-		- ![images](./images/d-732.png)
-		- Thực hiện move sang node2 
-		- ![images](./images/d-733.png)
-		- ![images](./images/d-734.png)
-		- Trên node 2 stop service SQL Server 
-		- ![images](./images/d-735.png)
-		- Qúa trình failover diễn ra chuyển sang node 1
-		- ![images](./images/d-736.png)
-		- ![images](./images/d-737.png)
+- Cấu hình Always On Availability Groups trên các SQL Cluster Nodes
+	- Trong SQL Server Configuration Manager của cả 2 node, trỏ phải lên SQL Server tương ứng rồi chọn Properties
+	- ![images](./images/d-709.png)
+	- Tại tab AlwaysOn High Availability tích Enable -> Apply -> OK 
+	- ![images](./images/d-710.png)
+	- Restart service để apply 
+	- ![images](./images/d-712.png)
+	- Backup database (database nằm trên node 1)
+	- ![images](./images/d-714.png)
+	- ![images](./images/d-715.png)
+	- Tạo Always On Availability Groups
+	- Tại phần Always On High Availability -> Availability Groups. Click chuột phải chọn `New Availability Groups Wizard`
+	- ![images](./images/d-716.png)
+	- ![images](./images/d-717.png)
+	- Cấu hình tên và tích chọn `Data Level Health Dectection` 
+	- ![images](./images/d-731.png)
+	- Chọn DB cần thêm vào AOAG
+	- ![images](./images/d-719.png)
+	- Chọn Add Replica 
+	- ![images](./images/d-720.png)
+	- Login vào sqlserver node2 
+	- ![images](./images/d-721.png)
+	- Tích `Automatic Failover`, `Readable Secondary` = Yes
+	- ![images](./images/d-722.png)
+	- Chọn tab Listener: Cấu hình tên, port và IP 
+	- ![images](./images/d-723.png)
+	- Cấu hình nơi lưu DB và log: trỏ về thư mục share đã tạo từ trước 
+	- ![images](./images/d-724.png)
+	- Validation 
+	- ![images](./images/d-725.png)
+	- Cấu hình hoàn tất 
+	- ![images](./images/d-727.png)
 
-	- So sánh Always On Availability Groups và Failover Cluster Instances
+- Kiểm tra 
+	- Kiểm tra nhận thấy quá trình synchronous diễn ra 
+	- ![images](./images/d-728.png)
+	- Kiểm tra Dashboard : Tại Always On Availability Groups -> Click chuột phải vào và chọn Show Dashboards 
+	- ![images](./images/d-729.png)
+	- ![images](./images/d-730.png)
+	- Tại Failover Cluster Manager hiển thị Roles mới tạo, có thể chuyển qua lại giữa các node giống 
+	- ![images](./images/d-732.png)
+	- Thực hiện move sang node2 
+	- ![images](./images/d-733.png)
+	- ![images](./images/d-734.png)
+	- Trên node 2 stop service SQL Server 
+	- ![images](./images/d-735.png)
+	- Qúa trình failover diễn ra chuyển sang node 1
+	- ![images](./images/d-736.png)
+	- ![images](./images/d-737.png)
 
-	| **Đặc điểm**                   | **Always On Availability Groups (AG)**              | **Failover Cluster Instances (FCI)** |
-	| ------------------------------ | --------------------------------------------------- | ------------------------------------ |
-	| **Yêu cầu WSFC**               | ✔️ Có                                               | ✔️ Có                                |
-	| **Cấp độ bảo vệ**              | Cơ sở dữ liệu                                       | Toàn bộ instance                     |
-	| **Kiểu lưu trữ**               | Không chia sẻ (Non-Shared)                          | Chia sẻ (Shared)                     |
-	| **Bản sao thứ cấp có thể đọc** | ✔️ Có                                               | ❌ Không                             |
-	| **Chế độ failover**            | Tự động, thủ công có kế hoạch, bắt buộc             | Tự động, thủ công có kế hoạch        |
-	| **Cơ chế khả dụng**            | **HA & DR** (High Availability & Disaster Recovery) | **Chỉ HA** (High Availability)       |
-	| **Tài nguyên failover**        | Chỉ cơ sở dữ liệu                                   | Toàn bộ instance với cơ sở dữ liệu   |
+- So sánh Always On Availability Groups và Failover Cluster Instances
 
+| **Đặc điểm**                   | **Always On Availability Groups (AG)**              | **Failover Cluster Instances (FCI)** |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------ |
+| **Yêu cầu WSFC**               | ✔️ Có                                               | ✔️ Có                                |
+| **Cấp độ bảo vệ**              | Cơ sở dữ liệu                                       | Toàn bộ instance                     |
+| **Kiểu lưu trữ**               | Không chia sẻ (Non-Shared)                          | Chia sẻ (Shared)                     |
+| **Bản sao thứ cấp có thể đọc** | ✔️ Có                                               | ❌ Không                             |
+| **Chế độ failover**            | Tự động, thủ công có kế hoạch, bắt buộc             | Tự động, thủ công có kế hoạch        |
+| **Cơ chế khả dụng**            | **HA & DR** (High Availability & Disaster Recovery) | **Chỉ HA** (High Availability)       |
+| **Tài nguyên failover**        | Chỉ cơ sở dữ liệu                                   | Toàn bộ instance với cơ sở dữ liệu   |
