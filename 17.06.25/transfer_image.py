@@ -10,7 +10,7 @@ dst_dir = r'C:\Users\an.nt\Documents\GitHub\thuctapnhanhoa\17.06.25\images'
 os.makedirs(dst_dir, exist_ok=True)
 
 # Trích xuất danh sách ảnh từ file markdown
-with open('0. Database Server.md', 'r', encoding='utf-8') as f:
+with open('1. SQL_SERVER.md', 'r', encoding='utf-8') as f:
     content = f.read()
 
 # Regex để tìm tất cả ảnh theo định dạng ![images](./images/...)
