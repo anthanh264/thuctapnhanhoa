@@ -24,5 +24,8 @@
 22. [Tìm hiểu tcpdump & Wireshark](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.05.25/3.%20T%C3%ACm%20hi%E1%BB%83u%20tcpdump%20%26%20Wireshark.md)  
 23. [Webserver](https://github.com/anthanh264/thuctapnhanhoa/blob/main/26.05.25/0.%20Webserver.md)  
 24. [FTP Server](https://github.com/anthanh264/thuctapnhanhoa/blob/main/30.05.25/0.%20FTP%20Server.md)  
-
-
+25. [Database Server](https://github.com/anthanh264/thuctapnhanhoa/blob/main/18.06.25/0.%20Database%20Server.md)
+26. [KVM](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.06.25/0.KVM.md)
+27. [Role, Quorum, Witness trong Windows Server Failover Clustering (WSFC)](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.06.25/1.%20Role%2C%20Quorum%2C%20Witness%20trong%20Windows%20Server%20Failover%20Clustering%20(WSFC).md)
+28. [Mail Server basic with Postfix Dovecot](https://github.com/anthanh264/thuctapnhanhoa/blob/main/20.06.25/0.%20Mailserver%20v%E1%BB%9Bi%20Postfix%2C%20Dovecot%20(Draft)%20.md)
+29. [AOAG Multi Domain](https://github.com/anthanh264/thuctapnhanhoa/blob/main/24.06.25/0.%20AOAG%20Multi-Domain.md)
