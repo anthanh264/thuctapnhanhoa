@@ -29,3 +29,7 @@
 27. [Role, Quorum, Witness trong Windows Server Failover Clustering (WSFC)](https://github.com/anthanh264/thuctapnhanhoa/blob/main/19.06.25/1.%20Role%2C%20Quorum%2C%20Witness%20trong%20Windows%20Server%20Failover%20Clustering%20(WSFC).md)
 28. [Mail Server basic with Postfix Dovecot](https://github.com/anthanh264/thuctapnhanhoa/blob/main/20.06.25/0.%20Mailserver%20v%E1%BB%9Bi%20Postfix%2C%20Dovecot%20(Draft)%20.md)
 29. [AOAG Multi Domain](https://github.com/anthanh264/thuctapnhanhoa/blob/main/24.06.25/0.%20AOAG%20Multi-Domain.md)
+30. [SSL_TLS](https://github.com/anthanh264/thuctapnhanhoa/blob/main/01.07.25/0.%20SSL_TLS.md)
+31. [aaPanel](https://github.com/anthanh264/thuctapnhanhoa/tree/main/05.07.25)
+32. [Plesk](https://github.com/anthanh264/thuctapnhanhoa/tree/main/15.07.25)
+33. [DirectAdmin](https://github.com/anthanh264/thuctapnhanhoa/tree/main/19.07.25)
