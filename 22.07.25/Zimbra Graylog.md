@@ -6,8 +6,8 @@ Bài hướng dẫn này sẽ trình bày cấu hình Filebeat trên máy chủ 
 
 Trước khi bắt đầu, hãy đảm bảo rằng bạn đã có các hệ thống sau được cấu hình và hoạt động:
 
-  * **Zimbra 8.8.15**: Được cài đặt và hoạt động. Bạn có thể tham khảo hướng dẫn [Zimbra 8.8.15 on Ubuntu 20.04](./Zimbra 8.8.15 on Ubuntu 20.04.md) nếu chưa.
-  * **Graylog 5.0 và Elasticsearch 7.17.x**: Được cài đặt và hoạt động. Bạn có thể tham khảo hướng dẫn [Graylog 5.0 on Ubuntu 22.04](./Graylog 5.0 on Ubuntu 22.04.md) nếu chưa.
+  * **Zimbra 8.8.15**: Được cài đặt và hoạt động. Bạn có thể tham khảo hướng dẫn [Zimbra 8.8.15 on Ubuntu 20.04](./Zimbra%208.8.15%20on%20Ubuntu%2020.04.md).
+  * **Graylog 5.0 và Elasticsearch 7.17.x**: Được cài đặt và hoạt động. Bạn có thể tham khảo hướng dẫn [Graylog 5.0 on Ubuntu 22.04](./Graylog%205.0%20on%20Ubuntu%2022.04.md).
 
 Trong hướng dẫn này, chúng ta sẽ sử dụng Filebeat để đẩy log đến máy chủ Graylog. Các máy ảo được sử dụng trong ví dụ này có cấu hình như sau:
 
