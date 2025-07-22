@@ -85,7 +85,7 @@ Extractors giúp Graylog phân tích cú pháp các bản ghi log và trích xu�
 
 1.  Trên giao diện quản lý Inputs, tìm Input `Zimbra-Logs` vừa tạo và nhấp vào **Manage extractors**.
 2.  Trong giao diện `Extractors of Zimbra-Logs`, nhấp vào **Actions** -\> **Import Extractors**.
-3.  Một hộp văn bản sẽ xuất hiện. Dán toàn bộ nội dung của tệp [Zimbra-Logs-Extractors](https://www.google.com/search?q=./Zimbra-Logs-Extractors.json) vào hộp văn bản này.
+3.  Một hộp văn bản sẽ xuất hiện. Dán toàn bộ nội dung của tệp [Zimbra-Logs-Extractors](./Zimbra-Logs-Extractors.json) vào hộp văn bản này.
 4.  Nhấp vào nút **Add extractors to input**.
 
 Bạn đã hoàn tất cấu hình trên Graylog.
