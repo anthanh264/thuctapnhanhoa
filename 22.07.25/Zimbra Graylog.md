@@ -85,7 +85,7 @@ Extractors giúp Graylog phân tích cú pháp các bản ghi log và trích xu�
 
 1.  Trên giao diện quản lý Inputs, tìm Input `Zimbra-Logs` vừa tạo và nhấp vào **Manage extractors**.
 2.  Trong giao diện `Extractors of Zimbra-Logs`, nhấp vào **Actions** -\> **Import Extractors**.
-3.  Một hộp văn bản sẽ xuất hiện. Dán toàn bộ nội dung của tệp [Zimbra-Logs-Extractors](./Zimbra-Logs-Extractors.json) vào hộp văn bản này.
+3.  Một hộp văn bản sẽ xuất hiện. Dán toàn bộ nội dung của tệp [Zimbra-Logs-Extractors](./files/Zimbra-Logs-Extractors.json) vào hộp văn bản này.
 4.  Nhấp vào nút **Add extractors to input**.
 
 Bạn đã hoàn tất cấu hình trên Graylog.
@@ -177,7 +177,7 @@ Chúng ta sẽ chỉnh sửa tệp cấu hình chính của Filebeat để chỉ
 
 4.  Lưu tệp cấu hình và thoát khỏi trình soạn thảo (`Ctrl+X`, sau đó `Y` và `Enter` nếu dùng `nano`).
 
-Bạn có thể tham khảo tệp cấu hình mẫu đầy đủ tại [FileBeatConfig](https://www.google.com/search?q=./filebeat.yml).
+Bạn có thể tham khảo tệp cấu hình mẫu đầy đủ tại [FileBeatConfig](./files/filebeat.yml).
 
 #### 3.3. Kích hoạt và Khởi động Filebeat
 
@@ -214,8 +214,8 @@ This guide will walk you through the step-by-step process of configuring Filebea
 
 Before you begin, ensure you have the following systems configured and operational:
 
-  * **Zimbra 8.8.15**: Installed and running. You can refer to the guide [Zimbra 8.8.15 on Ubuntu 20.04](./Zimbra 8.8.15 on Ubuntu 20.04.md) if needed.
-  * **Graylog 5.0 and Elasticsearch 7.17.x**: Installed and running. You can refer to the guide [Graylog 5.0 on Ubuntu 22.04](./Graylog 5.0 on Ubuntu 22.04.md) if needed.
+  * **Zimbra 8.8.15**: Installed and running. You can refer to the guide [Zimbra 8.8.15 on Ubuntu 20.04](./Zimbra%208.8.15%20on%20Ubuntu%2020.04.md).
+  * **Graylog 5.0 and Elasticsearch 7.17.x**: Installed and running. You can refer to the guide [Graylog 5.0 on Ubuntu 22.04](./Graylog%205.0%20on%20Ubuntu%2022.04.md).
 
 In this tutorial, we will be using Filebeat to push logs to the Graylog server. The virtual machines used in this example have the following configurations:
 
@@ -293,7 +293,7 @@ Extractors help Graylog parse log records and extract specific pieces of informa
 
 1.  On the Inputs management interface, locate the `Zimbra-Logs` Input you just created and click **Manage extractors**.
 2.  In the `Extractors of Zimbra-Logs` interface, click on **Actions** -\> **Import Extractors**.
-3.  A text box will appear. Paste the entire content of the [Zimbra-Logs-Extractors](https://www.google.com/search?q=./Zimbra-Logs-Extractors.json) file into this text box.
+3.  A text box will appear. Paste the entire content of the [Zimbra-Logs-Extractors](./files/Zimbra-Logs-Extractors.json) file into this text box.
 4.  Click the **Add extractors to input** button.
 
 You have now completed the Graylog configuration.
@@ -385,7 +385,7 @@ We will edit the main Filebeat configuration file to specify which log files to 
 
 4.  Save the configuration file and exit the editor (`Ctrl+X`, then `Y` and `Enter` if using `nano`).
 
-You can refer to a complete sample configuration file at [FileBeatConfig](https://www.google.com/search?q=./filebeat.yml).
+You can refer to a complete sample configuration file at [FileBeatConfig](./files/filebeat.yml).
 
 #### 3.3. Enable and Start Filebeat
 
