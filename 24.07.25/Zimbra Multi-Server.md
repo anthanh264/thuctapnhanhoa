@@ -19,6 +19,68 @@ Trong mô hình triển khai đa máy chủ, Zimbra được chia thành nhiều
 
 **Quá trình cài đặt nhiều máy chủ rất đơn giản và dễ thực hiện. Bạn chạy cùng một script cài đặt trên mỗi máy chủ, chọn (các) thành phần để cài đặt và sử dụng menu để cấu hình hệ thống.**
 
+``` mermaid
+flowchart LR
+    %% Clients
+    subgraph Clients["Nguoi dung / Email Clients"]
+        A1[Web Browser]:::client
+        A2[Outlook / Thunderbird]:::client
+        A3[Mobile Mail]:::client
+    end
+
+    %% Internet node
+    Internet[(Internet)]:::internet
+
+    %% Proxy Server
+    subgraph Proxy["PROXY SERVER 192.168.50.143"]
+        P[Services: Nginx, zm-mc; Ports: 80, 443 HTTP, 110, 995 POP, 143, 993 IMAP]:::proxy
+    end
+
+    %% MTA Server
+    subgraph MTA["MTA SERVER 192.168.50.141"]
+        M[Services: Postfix, Amavis, ClamAV, SpamAssassin; Ports: 25 SMTP, 587 Submission, 7025 LMTP]:::mta
+    end
+
+    %% Mailbox Server
+    subgraph Mailbox["MAILBOX SERVER 192.168.50.142"]
+        B[Jetty, MariaDB, Lucene; Ports: 7071 Admin, 443 Webmail, 143, 993 IMAP, 110, 995 POP]:::mailbox
+    end
+
+    %% LDAP Server
+    subgraph LDAP["LDAP SERVER 192.168.50.140"]
+        L[OpenLDAP; Ports: 389, 636 LDAP LDAPS]:::ldap
+    end
+
+    %% Client to Proxy (Webmail/IMAP/POP)
+    A1 -->|HTTPS 443| P
+    A2 -->|IMAPS 993| P
+    A2 -->|POPS 995| P
+    A3 -->|HTTPS 443| P
+
+    %% SMTP goes directly to MTA (Clients + Internet)
+    A2 -->|SMTP 25 587| M
+    Internet -->|SMTP 25 inbound mail| M
+
+    %% Proxy forwards Webmail/IMAP/POP to Mailbox
+    P -->|Webmail IMAP POP| B
+
+    %% MTA delivers to Mailbox via LMTP
+    M -->|LMTP 7025| B
+
+    %% All servers query LDAP
+    P -->|LDAP 389 636| L
+    M -->|LDAP 389 636| L
+    B -->|LDAP 389 636| L
+
+    %% Styles
+    classDef proxy fill:#FFD966,stroke:#333;
+    classDef mta fill:#F4B183,stroke:#333;
+    classDef mailbox fill:#A9D18E,stroke:#333;
+    classDef ldap fill:#9DC3E6,stroke:#333;
+    classDef client fill:#E4DFEC,stroke:#555;
+    classDef internet fill:#F2F2F2,stroke:#333,stroke-dasharray:4 2;
+
+```
 -----
 
 ## 2\. Bảng phân hoạch IP
