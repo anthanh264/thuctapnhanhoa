@@ -1,119 +1,115 @@
 # Thiết lập Switch Cisco ảo bằng Docker
 - Hướng dẫn này triển khai một container Docker mô phỏng switch Cisco trên mạng LAN, giúp các thiết bị khác trong mạng có thể truy cập được.
 ## Chuẩn bị
-	- Một máy vật lý chạy hệ điều hành Linux.
-	- Docker đã được cài đặt trên máy Linux. Nếu chưa cài đặt, có thể dùng lệnh sau:
-	```Bash
-	sudo apt install docker.io -y
-	```
+- Một máy vật lý chạy hệ điều hành Linux.
+- Docker đã được cài đặt trên máy Linux. Nếu chưa cài đặt, có thể dùng lệnh sau:
+```Bash
+sudo apt install docker.io -y
+```
 ## Cấu hình mạng Docker với Macvlan
-	- Để container Docker có thể truy cập trực tiếp trên mạng LAN, ta sẽ sử dụng mạng macvlan. Điều này cho phép container có địa chỉ IP riêng trên cùng một subnet với máy chủ.
-		- Xác định giao diện mạng của máy chủ:
-		- Đầu tiên, hãy tìm tên giao diện mạng của máy chủ đang kết nối vào mạng LAN. Thường có thể tìm thấy bằng lệnh ip addr hoặc ip link. Tìm một giao diện có địa chỉ IP trong mạng LAN. Các tên phổ biến bao gồm eth0, ens33, enp0s3, v.v.
-	- Tạo mạng Macvlan: Chạy lệnh sau, điều chỉnh subnet, gateway và parent (giao diện máy chủ) để phù hợp với cấu hình mạng LAN:
-	```Bash
-	docker network create -d macvlan \
-	  --subnet=192.168.50.0/24 \
-	  --gateway=192.168.50.2 \
-	  -o parent=ens33 \
-	  macvlan50
-	```
-		-`--subnet=192.168.50.0/24`: Thay thế bằng dải IP subnet của mạng LAN.
-		-`--gateway=192.168.50.2`: Thay thế bằng địa chỉ IP gateway của mạng LAN.
-		-`-o parent=ens33`: Thay thế ens33 bằng tên giao diện mạng thực tế của máy chủ.
-		-`macvlan50`: Tên của mạng macvlan sẽ tạo.
-	- Để kiểm tra xem mạng đã được tạo thành công chưa, có thể dùng:
-	```Bash
-	docker network ls
-	```
-	- ![images](./images/sw-1.png)
+- Để container Docker có thể truy cập trực tiếp trên mạng LAN, ta sẽ sử dụng mạng macvlan. Điều này cho phép container có địa chỉ IP riêng trên cùng một subnet với máy chủ.
+	- Xác định giao diện mạng của máy chủ:
+	- Đầu tiên, hãy tìm tên giao diện mạng của máy chủ đang kết nối vào mạng LAN. Thường có thể tìm thấy bằng lệnh ip addr hoặc ip link. Tìm một giao diện có địa chỉ IP trong mạng LAN. Các tên phổ biến bao gồm eth0, ens33, enp0s3, v.v.
+- Tạo mạng Macvlan: Chạy lệnh sau, điều chỉnh subnet, gateway và parent (giao diện máy chủ) để phù hợp với cấu hình mạng LAN:
+```Bash
+docker network create -d macvlan \
+  --subnet=192.168.50.0/24 \
+  --gateway=192.168.50.2 \
+  -o parent=ens33 \
+  macvlan50
+```
+	-`--subnet=192.168.50.0/24`: Thay thế bằng dải IP subnet của mạng LAN.
+	-`--gateway=192.168.50.2`: Thay thế bằng địa chỉ IP gateway của mạng LAN.
+	-`-o parent=ens33`: Thay thế ens33 bằng tên giao diện mạng thực tế của máy chủ.
+	-`macvlan50`: Tên của mạng macvlan sẽ tạo.
+- Để kiểm tra xem mạng đã được tạo thành công chưa, có thể dùng:
+```Bash
+docker network ls
+```
+- ![images](./images/sw-1.png)
 ## Chuẩn bị Dockerfile và cấu hình SNMP
-	- Tiếp theo, ta sẽ tạo một Dockerfile để xây dựng image cho container, cùng với một file cấu hình SNMP để container hoạt động như một switch Cisco.
-		- Tạo Dockerfile: Tạo một file có tên Dockerfile (không có phần mở rộng) và dán nội dung sau vào:
-		```
-		mkdir stimulate-switch
-		cd stimulate-switch
-		nano Dockerfile
-		```
-		- Nội dung 
-		```Dockerfile
-		FROM ubuntu:22.04
-		RUN apt update && \
-			apt install -y snmp snmpd && \
-			mkdir -p /var/run/net-snmp
-		COPY snmpd.conf /etc/snmp/snmpd.conf
-		EXPOSE 161/udp
-		CMD ["/usr/sbin/snmpd", "-f", "-Lo"]
-		```
-		- ![images](./images/sw-2.png)
-		- Dockerfile này sẽ tạo một image dựa trên Ubuntu 22.04.
-			- Nó cài đặt snmp và snmpd (daemon SNMP).
-			- Tạo thư mục /var/run/net-snmp cần thiết cho snmpd.
-			- Sao chép file cấu hình snmpd.conf (sẽ tạo ở bước tiếp theo) vào đúng vị trí.
-			- Mở cổng UDP 161, là cổng mặc định cho SNMP.
-			- CMD chạy daemon snmpd khi container khởi động.
+- Tiếp theo, ta sẽ tạo một Dockerfile để xây dựng image cho container, cùng với một file cấu hình SNMP để container hoạt động như một switch Cisco.
+	- Tạo Dockerfile: Tạo một file có tên Dockerfile (không có phần mở rộng) và dán nội dung sau vào:
+	```
+	mkdir stimulate-switch
+	cd stimulate-switch
+	nano Dockerfile
+	```
+	- Nội dung 
+	```Dockerfile
+	FROM ubuntu:22.04
+	RUN apt update && \
+		apt install -y snmp snmpd && \
+		mkdir -p /var/run/net-snmp
+	COPY snmpd.conf /etc/snmp/snmpd.conf
+	EXPOSE 161/udp
+	CMD ["/usr/sbin/snmpd", "-f", "-Lo"]
+	```
+	- ![images](./images/sw-2.png)
+	- Dockerfile này sẽ tạo một image dựa trên Ubuntu 22.04.
+		- Nó cài đặt snmp và snmpd (daemon SNMP).
+		- Tạo thư mục /var/run/net-snmp cần thiết cho snmpd.
+		- Sao chép file cấu hình snmpd.conf (sẽ tạo ở bước tiếp theo) vào đúng vị trí.
+		- Mở cổng UDP 161, là cổng mặc định cho SNMP.
+		- CMD chạy daemon snmpd khi container khởi động.
 	- Tạo file cấu hình SNMP (snmpd.conf):
-		- Tạo một file có tên snmpd.conf trong cùng thư mục với Dockerfile và dán nội dung sau vào:
-		```
-		nano snmpd.conf
-		```
-		```Bash
-		cat > snmpd.conf << 'EOF'
-		agentAddress udp:161
-		rocommunity public
-		sysLocation     "Core Switch Rack A1"
-		sysContact      "admin@annt.cloud"
-		sysName         "LAB-SW3750"
-		# Override system description
-		sysDescr        "Cisco IOS Software, C3750 Software (C3750-IPBASEK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE"
-
-		interface lo
-		interface eth0
-		interface vlan1
-		extend .1.3.6.1.4.1.8072.2.1.1.1.0 echo "Simulated Cisco Switch"
-		EOF
-		```
-		- ![images](./images/sw-3.png)
-		- File này cấu hình daemon SNMP để mô phỏng một switch Cisco:
-		- `rocommunity public`: Thiết lập community string chỉ đọc là "public".
-		- `sysLocation, sysContact, sysName, sysDescr`: Cung cấp thông tin mô tả về thiết bị. sysDescr đặc biệt quan trọng để mô phỏng phiên bản Cisco IOS.
-		- `interface lo, interface eth0, interface vlan1:` Giả lập các giao diện mạng.
-		- `extend`: Cho phép thêm các OID tùy chỉnh, ở đây để thêm một thông điệp "Simulated Cisco Switch".
+	- Tạo một file có tên snmpd.conf trong cùng thư mục với Dockerfile và dán nội dung sau vào:
+	```
+	nano snmpd.conf
+	```
+	```Bash
+	cat > snmpd.conf << 'EOF'
+	agentAddress udp:161
+	rocommunity public
+	sysLocation     "Core Switch Rack A1"
+	sysContact      "admin@annt.cloud"
+	sysName         "LAB-SW3750"
+	# Override system description
+	sysDescr        "Cisco IOS Software, C3750 Software (C3750-IPBASEK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE"
+	interface lo
+	interface eth0
+	interface vlan1
+	extend .1.3.6.1.4.1.8072.2.1.1.1.0 echo "Simulated Cisco Switch"
+	EOF
+	```
+	- ![images](./images/sw-3.png)
+	- File này cấu hình daemon SNMP để mô phỏng một switch Cisco:
+	- `rocommunity public`: Thiết lập community string chỉ đọc là "public".
+	- `sysLocation, sysContact, sysName, sysDescr`: Cung cấp thông tin mô tả về thiết bị. sysDescr đặc biệt quan trọng để mô phỏng phiên bản Cisco IOS.
+	- `interface lo, interface eth0, interface vlan1:` Giả lập các giao diện mạng.
+	- `extend`: Cho phép thêm các OID tùy chỉnh, ở đây để thêm một thông điệp "Simulated Cisco Switch".
 
 ## Build và chạy Container
-	- Build Image:
-		- Trong cùng thư mục chứa Dockerfile và snmpd.conf, chạy lệnh sau để xây dựng image:
-		```Bash
-		docker build -t stimulate-switch .
-		```
-		- ![images](./images/sw-4.png)
-		- `docker build`: Lệnh để xây dựng image Docker.
-		- `-t stimulate-switch`: Gán tag (tên) là fake-cisco-switch cho image.
-		- `.`: Chỉ định rằng Dockerfile nằm trong thư mục hiện tại.
-		- Quá trình này có thể mất vài phút tùy thuộc vào tốc độ mạng.
-	- Chạy Container:
-		- Sau khi image được xây dựng, chạy container bằng lệnh sau:
-		```Bash
-		docker run -d --name stimulate-3750 \
-		  --network macvlan50 \
-		  --ip 192.168.50.250 \
-		  --dns 8.8.8.8 \
-		  stimulate-switch
-		```
-		- ![images](./images/sw-5.png)
-		- `-d`: Chạy container ở chế độ nền (detached mode).
-		- `--name stimulate-3750`: Đặt tên cho container là stimulate-3750.
-		- `--network macvlan50`: Kết nối container vào mạng macvlan50 đã tạo ở Bước 1.
-		- `--ip 192.168.50.250`: Gán địa chỉ IP tĩnh 192.168.50.250 cho container. Hãy chắc chắn rằng địa chỉ IP này chưa được sử dụng trong mạng LAN của quý vị và nằm trong dải subnet đã khai báo.
-		- `--dns 8.8.8.8`: Cấu hình DNS cho container (có thể thay đổi nếu cần).
-		- `stimulate-switch`: Tên của image đã build.
+- Build Image:
+	- Trong cùng thư mục chứa Dockerfile và snmpd.conf, chạy lệnh sau để xây dựng image:
+	```Bash
+	docker build -t stimulate-switch .
+	```
+	- ![images](./images/sw-4.png)
+	- `docker build`: Lệnh để xây dựng image Docker.
+	- `-t stimulate-switch`: Gán tag (tên) là fake-cisco-switch cho image.
+	- `.`: Chỉ định rằng Dockerfile nằm trong thư mục hiện tại.
+	- Quá trình này có thể mất vài phút tùy thuộc vào tốc độ mạng.
+- Chạy Container:
+	- Sau khi image được xây dựng, chạy container bằng lệnh sau:
+	```Bash
+	docker run -d --name stimulate-3750 \
+	  --network macvlan50 \
+	  --ip 192.168.50.250 \
+	  --dns 8.8.8.8 \
+	  stimulate-switch
+	```
+	- ![images](./images/sw-5.png)
+	- `-d`: Chạy container ở chế độ nền (detached mode).
+	- `--name stimulate-3750`: Đặt tên cho container là stimulate-3750.
+	- `--network macvlan50`: Kết nối container vào mạng macvlan50 đã tạo ở Bước 1.
+	- `--ip 192.168.50.250`: Gán địa chỉ IP tĩnh 192.168.50.250 cho container. Hãy chắc chắn rằng địa chỉ IP này chưa được sử dụng trong mạng LAN của quý vị và nằm trong dải subnet đã khai báo.
+	- `--dns 8.8.8.8`: Cấu hình DNS cho container (có thể thay đổi nếu cần).
+	- `stimulate-switch`: Tên của image đã build.
 - Kiểm tra 
 ```
 docker ps -a 
 ```
-
-
-Here's the English translation of your guide:
 
 -----
 
